@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education Lending PH — Salmon Internal Brief v3</title>
+<style>
+/* ─── RESET ───────────────────────────────────────────── */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* ─── BODY ────────────────────────────────────────────── */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #D8D8D8;
+  color: #2D3436;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ─── SLIDE SHELL ─────────────────────────────────────── */
+.slide {
+  width: 100%;
+  max-width: 1280px;
+  min-height: 720px;
+  margin: 0 auto 8px;
+  padding: 44px 64px 50px;
+  background: #fff;
+  position: relative;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.slide.dark   { background: #1E2426; color: #fff; }
+.slide.coral  { background: #FF6B6B; color: #fff; }
+.slide.offwhite { background: #F7F5F2; }
+
+/* ─── BRAND CHROME ────────────────────────────────────── */
+.logo {
+  position: absolute; top: 20px; right: 40px;
+  font-size: 15px; font-weight: 900; letter-spacing: -0.3px; color: #FF6B6B;
+}
+.slide.dark .logo, .slide.coral .logo { color: rgba(255,255,255,0.85); }
+
+.foot {
+  position: absolute; bottom: 16px; left: 64px; right: 64px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; font-weight: 600; color: #FF6B6B; border-top: 1px solid #F0F0F0; padding-top: 8px;
+}
+.slide.dark .foot { color: rgba(255,255,255,0.35); border-top-color: rgba(255,255,255,0.08); }
+.slide.coral .foot { color: rgba(255,255,255,0.55); border-top-color: rgba(255,255,255,0.2); }
+.slide.offwhite .foot { border-top-color: #E8E5E0; }
+
+/* ─── LABEL / EYEBROW ─────────────────────────────────── */
+.eyebrow {
+  font-size: 10px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: #aaa; margin-bottom: 6px;
+}
+.slide.dark .eyebrow { color: rgba(255,255,255,0.35); }
+.slide.coral .eyebrow { color: rgba(255,255,255,0.6); }
+
+/* ─── HEADINGS ────────────────────────────────────────── */
+h1 {
+  font-size: 46px; font-weight: 900; line-height: 1.05;
+  letter-spacing: -1.5px; color: #2D3436; text-transform: uppercase;
+}
+.slide.dark h1 { color: #fff; }
+.slide.coral h1 { color: #fff; }
+
+h2 {
+  font-size: 28px; font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.6px; color: #FF6B6B; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.slide.dark h2 { color: #C8F5F1; }
+
+h3 {
+  font-size: 13px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.6px; color: #2D3436; margin-bottom: 7px;
+}
+.slide.dark h3 { color: #C8F5F1; }
+.slide.coral h3 { color: rgba(255,255,255,0.9); }
+
+/* ─── BODY TEXT ───────────────────────────────────────── */
+p { font-size: 13px; line-height: 1.65; color: #555; }
+.slide.dark p { color: rgba(255,255,255,0.72); }
+.slide.coral p { color: rgba(255,255,255,0.88); }
+strong { color: #2D3436; font-weight: 700; }
+.slide.dark strong { color: #fff; }
+.slide.coral strong { color: #fff; }
+em { color: #FF6B6B; font-style: normal; font-weight: 700; }
+.slide.dark em { color: #C8F5F1; }
+
+sup { font-size: 9px; vertical-align: super; }
+
+/* ─── LAYOUT ──────────────────────────────────────────── */
+.row { display: flex; gap: 16px; }
+.col { flex: 1; min-width: 0; }
+.mt8  { margin-top: 8px; }
+.mt12 { margin-top: 12px; }
+.mt16 { margin-top: 16px; }
+.mt20 { margin-top: 20px; }
+.mb8  { margin-bottom: 8px; }
+.mb12 { margin-bottom: 12px; }
+
+/* ─── CARDS ───────────────────────────────────────────── */
+.card {
+  background: #F7F8FA; border-radius: 10px; padding: 16px 18px;
+}
+.card-coral { background: rgba(255,107,107,0.07); border: 1.5px solid rgba(255,107,107,0.2); border-radius: 10px; padding: 16px 18px; }
+.card-teal  { background: rgba(46,196,182,0.07);  border: 1.5px solid rgba(46,196,182,0.2);  border-radius: 10px; padding: 16px 18px; }
+.card-dark  { background: #1E2426; border-radius: 10px; padding: 16px 18px; }
+.card-amber { background: rgba(243,156,18,0.06);  border: 1.5px solid rgba(243,156,18,0.25); border-radius: 10px; padding: 16px 18px; }
+.card-red   { background: rgba(231,76,60,0.06);   border: 1.5px solid rgba(231,76,60,0.2);   border-radius: 10px; padding: 16px 18px; }
+.card-green { background: rgba(39,174,96,0.06);   border: 1.5px solid rgba(39,174,96,0.2);   border-radius: 10px; padding: 16px 18px; }
+
+/* ─── BIG STATS ───────────────────────────────────────── */
+.stat { font-size: 40px; font-weight: 900; letter-spacing: -1.5px; color: #FF6B6B; line-height: 1; }
+.stat.teal  { color: #2EC4B6; }
+.stat.white { color: #fff; }
+.stat.amber { color: #F39C12; }
+.stat.green { color: #27AE60; }
+.stat.dark  { color: #2D3436; }
+.stat-sub { font-size: 11px; color: #999; margin-top: 4px; line-height: 1.4; }
+.slide.dark .stat-sub { color: rgba(255,255,255,0.4); }
+
+/* ─── TABLES ──────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th {
+  background: #2D3436; color: #fff; padding: 7px 10px;
+  text-align: left; font-weight: 700; font-size: 10.5px;
+  letter-spacing: 0.4px; text-transform: uppercase; white-space: nowrap;
+}
+th.h-coral { background: #FF6B6B; }
+th.h-teal  { background: #2EC4B6; }
+th.h-green { background: #27AE60; }
+th.h-red   { background: #C0392B; }
+th.h-amber { background: #E67E22; }
+th.h-grey  { background: #636E72; }
+td { padding: 6px 10px; border-bottom: 1px solid #F0F0F0; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr.tr-highlight td { background: #FFFBF0; }
+tr.tr-coral td { background: #FFF5F5; }
+tr.tr-teal  td { background: #F0FFFE; }
+tr.tr-total td { background: #F0FFF9; font-weight: 700; border-top: 2px solid #2EC4B6; }
+tr.tr-cost  td { background: #FFF8F8; }
+.tn { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.pos { color: #27AE60; font-weight: 700; }
+.neg { color: #E74C3C; font-weight: 700; }
+.neu { color: #E67E22; font-weight: 700; }
+.small { font-size: 10.5px; color: #888; }
+
+/* ─── WATERFALL BARS ──────────────────────────────────── */
+.wf { }
+.wf-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.wf-label { width: 175px; font-size: 11.5px; color: #555; flex-shrink: 0; line-height: 1.3; }
+.wf-track { flex: 1; background: #EFEFEF; border-radius: 3px; height: 16px; overflow: hidden; }
+.wf-fill  { height: 100%; border-radius: 3px; display: flex; align-items: center;
+            padding-left: 6px; font-size: 10px; font-weight: 700; color: #fff; white-space: nowrap; }
+.wf-val { width: 70px; text-align: right; font-size: 11px; font-weight: 700; color: #2D3436; flex-shrink: 0; }
+
+/* ─── SCENARIO CHIPS ──────────────────────────────────── */
+.sc-row { display: flex; gap: 10px; }
+.sc { flex: 1; border-radius: 9px; padding: 12px; text-align: center; }
+.sc-bear { background: #FFF0F0; border: 1.5px solid #E74C3C; }
+.sc-base { background: #F0FFFE; border: 1.5px solid #2EC4B6; }
+.sc-bull { background: #F0FFF5; border: 1.5px solid #27AE60; }
+.sc-reg  { background: #FFF8EE; border: 1.5px solid #E67E22; }
+.sc-label { font-size: 9.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.sc-bear .sc-label { color: #E74C3C; }
+.sc-base .sc-label { color: #2EC4B6; }
+.sc-bull .sc-label { color: #27AE60; }
+.sc-reg  .sc-label { color: #E67E22; }
+.sc-num { font-size: 20px; font-weight: 900; margin: 5px 0 2px; letter-spacing: -0.5px; }
+.sc-bear .sc-num { color: #E74C3C; }
+.sc-base .sc-num { color: #2EC4B6; }
+.sc-bull .sc-num { color: #27AE60; }
+.sc-reg  .sc-num { color: #E67E22; }
+.sc-sub { font-size: 10px; color: #888; line-height: 1.4; }
+
+/* ─── GAUGE ───────────────────────────────────────────── */
+.gauge { margin: 8px 0; }
+.g-label { display: flex; justify-content: space-between; font-size: 10.5px; color: #888; margin-bottom: 3px; }
+.g-track { background: #EFEFEF; border-radius: 4px; height: 9px; position: relative; }
+.g-fill  { height: 100%; border-radius: 4px; }
+.g-pin   { position: absolute; top: -3px; width: 2px; height: 15px; background: #E74C3C; }
+.g-pin-label { position: absolute; top: 13px; font-size: 9px; color: #E74C3C; font-weight: 700; transform: translateX(-50%); white-space: nowrap; }
+
+/* ─── RISK LIST ───────────────────────────────────────── */
+.risk-item { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid #F2F2F2; }
+.risk-item:last-child { border-bottom: none; }
+.risk-score { min-width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center;
+              justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; flex-direction: column; }
+.rs-h { background: #E74C3C; color: #fff; }
+.rs-m { background: #E67E22; color: #fff; }
+.rs-l { background: #27AE60; color: #fff; }
+.risk-body { flex: 1; }
+.risk-title { font-size: 12.5px; font-weight: 700; color: #2D3436; margin-bottom: 2px; }
+.risk-desc  { font-size: 11.5px; color: #666; line-height: 1.45; }
+.risk-mit   { font-size: 11px; color: #27AE60; margin-top: 3px; font-weight: 600; }
+
+/* ─── COMP CARDS ──────────────────────────────────────── */
+.comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.comp-card { border-radius: 10px; padding: 13px 14px; border: 1.5px solid #EDEDED; }
+.comp-card-name { font-size: 13px; font-weight: 800; color: #2D3436; margin-bottom: 5px; }
+.comp-card-detail { font-size: 11px; color: #666; line-height: 1.5; }
+.threat-tag { display: inline-block; margin-top: 7px; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+.tt-h { background: #FFEAEA; color: #C0392B; }
+.tt-m { background: #FFF3E0; color: #E67E22; }
+.tt-l { background: #EAFBF5; color: #1E8449; }
+.tt-us { background: #FFF0FD; color: #FF6B6B; border: 1px solid rgba(255,107,107,0.3); }
+
+/* ─── TIMELINE ────────────────────────────────────────── */
+.tl { display: flex; position: relative; margin: 16px 0 24px; }
+.tl::before { content:''; position:absolute; top:20px; left:20px; right:20px; height:2px; background:#FF6B6B; }
+.tl-item { flex:1; text-align:center; position:relative; padding:0 4px; }
+.tl-dot { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+          font-size:10px; font-weight:800; color:#fff; margin:0 auto 8px; position:relative; z-index:1; }
+.tl-title { font-size:11.5px; font-weight:700; color:#2D3436; margin-bottom:3px; }
+.tl-sub   { font-size:10.5px; color:#888; line-height:1.4; }
+.tl-gate  { background:#fff; border:2px solid #E74C3C; color:#E74C3C !important; }
+
+/* ─── GLOSSARY ────────────────────────────────────────── */
+.glos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+.glos-item { background: #F7F8FA; border-radius: 8px; padding: 9px 11px; }
+.glos-term { font-size: 11.5px; font-weight: 800; color: #FF6B6B; margin-bottom: 2px; }
+.glos-def  { font-size: 10.5px; color: #666; line-height: 1.45; }
+
+/* ─── ANNOTATION BOXES ────────────────────────────────── */
+.note { padding: 10px 14px; border-radius: 8px; font-size: 11.5px; line-height: 1.55; }
+.note-red   { background: #FFF5F5; border-left: 3px solid #E74C3C; color: #666; }
+.note-teal  { background: #F0FFFE; border-left: 3px solid #2EC4B6; color: #666; }
+.note-amber { background: #FFFBF0; border-left: 3px solid #E67E22; color: #666; }
+.note-green { background: #F0FFF7; border-left: 3px solid #27AE60; color: #666; }
+.note-title { font-weight: 800; font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
+.nt-red   .note-title, .note-red   .note-title { color: #C0392B; }
+.nt-teal  .note-title, .note-teal  .note-title { color: #1A9E93; }
+.nt-amber .note-title, .note-amber .note-title { color: #CA6F1E; }
+.nt-green .note-title, .note-green .note-title { color: #1E8449; }
+
+/* ─── DIVIDER ─────────────────────────────────────────── */
+hr { border: none; border-top: 1px solid #F0F0F0; margin: 12px 0; }
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 1 — ANSWER FIRST                          ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide dark">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div style="margin-top:16px;">
+    <div class="eyebrow">Internal Brief · Education Lending Philippines · March 2026</div>
+    <h1 style="font-size:42px; color:#FF6B6B; margin-top:8px;">Education Lending Is<br>A ₱394B Gap With<br><span style="color:#C8F5F1;">No Dominant Player Yet.</span></h1>
+    <p style="font-size:13px; color:rgba(255,255,255,0.5); margin-top:6px;">Salmon is a licensed Philippine lending company (via Sunprime Finance Corp.) with an existing consumer loan portfolio, agent network, and credit data. This brief evaluates a new education lending vertical.</p>
+    <p style="font-size:14px; max-width:700px; margin-top:10px; color:rgba(255,255,255,0.75); line-height:1.7;">
+      Formal education loan penetration is under 2.3% of a 2.5M serviceable student market. Only two fintechs operate in this space: Bukas (100+ schools) and GCash (5 schools, launched July 2025).
+      We have a <strong>12–18 month window</strong> before school-level exclusivity deals lock us out.
+      Our unit economics show
+      <strong>₱40,699 profit per ₱80K loan at base-case assumptions</strong> (10% default rate, 65% loss severity, 8% cost of funds).
+      The flagship product remains profitable across all stress-tested scenarios including bear-case defaults (20%) and a regulatory rate cap (2.5%/mo).
+    </p>
+  </div>
+
+  <div class="row mt20" style="gap:20px;">
+    <div style="flex:1; padding:16px; background:rgba(255,107,107,0.12); border-radius:10px; border:1px solid rgba(255,107,107,0.25);">
+      <div class="stat white">₱394B</div>
+      <div class="stat-sub">Annual financing gap — student demand exceeding formal supply<br><span style="color:rgba(255,255,255,0.25);">IFC Education Finance Assessment, 2024</span></div>
+    </div>
+    <div style="flex:1; padding:16px; background:rgba(200,245,241,0.08); border-radius:10px; border:1px solid rgba(200,245,241,0.15);">
+      <div class="stat teal">&lt;2.3%</div>
+      <div class="stat-sub">Formal market penetration today. Two fintechs only: Bukas + GCash<br><span style="color:rgba(255,255,255,0.25);">Bukas.ph / GCash Study Now Pay Later, July 2025</span></div>
+    </div>
+    <div style="flex:1; padding:16px; background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.1);">
+      <div class="stat white">₱40,699</div>
+      <div class="stat-sub">Net profit per ₱80K education loan — base case (PD 10%, CoF 8%)<br><span style="color:rgba(255,255,255,0.25);">Full unit economics on Slide 6</span></div>
+    </div>
+    <div style="flex:1; padding:16px; background:rgba(243,156,18,0.08); border-radius:10px; border:1px solid rgba(243,156,18,0.2);">
+      <div class="stat amber">12mo</div>
+      <div class="stat-sub">Competitive window before GCash scales to 50+ schools<br><span style="color:rgba(255,255,255,0.25);">5 schools now · 94M user base · Ant Group backing</span></div>
+    </div>
+  </div>
+
+  <div class="mt16" style="padding:14px 18px; background:rgba(255,107,107,0.1); border-radius:10px; border:1px solid rgba(255,107,107,0.2);">
+    <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#FF6B6B; margin-bottom:6px;">Recommendation</div>
+    <p style="font-size:13px; color:rgba(255,255,255,0.82);">
+      Run a <strong>₱15–25K low-cost validation</strong> (4–6 weeks) before committing ₱4.8M in capital.
+      If four binary tests pass, deploy a <strong>₱4.8M pilot</strong> (50 loans × ₱80K avg).
+      Kill gate at Month 3: if default rate exceeds 8%, pause. Maximum downside if we exit early: ₱850K opex.
+    </p>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>1 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 2 — GLOSSARY (compact)                    ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide offwhite">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Quick Reference</div>
+  <h2 style="margin-bottom:14px;">Key Terms — Defined Once, Used Throughout</h2>
+
+  <div class="glos-grid">
+    <div class="glos-item">
+      <div class="glos-term">PMT</div>
+      <div class="glos-def">Monthly payment. PMT = PV × r / (1 − (1+r)<sup>−n</sup>). Fixed amount covering both principal + interest each month.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">PD — Probability of Default</div>
+      <div class="glos-def">Chance a borrower fails to repay. <strong>Base: 10%</strong> (conservative vs. Salmon's observed 6.5% DPD2+ on product loans).</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">LGD — Loss Given Default</div>
+      <div class="glos-def">Share of outstanding balance lost if default occurs. <strong>Base: 65%</strong> — standard unsecured SEA benchmark.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">EAD — Exposure at Default</div>
+      <div class="glos-def">Outstanding balance <em>at the time</em> a borrower defaults. For declining-balance loans, avg EAD ≈ 50–60% of original loan. Critical for correct ECL.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">ECL — Expected Credit Loss</div>
+      <div class="glos-def">ECL = PD × LGD × EAD. Uses average outstanding balance, not original loan amount — because borrowers repay principal over time before any default occurs.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">CoF — Cost of Funds</div>
+      <div class="glos-def">Rate Salmon pays to source capital. <strong>Base: 8% p.a.</strong> (mature IFC+local blend). Year 1 pilot: 18–25% (equity-heavy; see Slide 8).</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">CAC — Customer Acquisition Cost</div>
+      <div class="glos-def">Total cost to originate one loan: agent commission + verification + marketing. <strong>Target: ≤₱2,000.</strong> Included in all our unit-econ calculations.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">APR — Annual Percentage Rate</div>
+      <div class="glos-def">Annualised interest rate. 4.9%/mo nominal = ~76% effective APR. Bukas charges the same upper bound publicly.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">DPD2+ / DPD30+</div>
+      <div class="glos-def">Days Past Due. DPD2+ = Salmon's current default signal on product loans (6.5%). DPD30+ = standard 30-day NPL threshold.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">TAM / SAM / SOM</div>
+      <div class="glos-def">Total / Serviceable / Obtainable market. TAM = 5.2M students. SAM = 2.5M. SOM = 55–83K/yr (bottom-up; see Slide 4).</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">TVET / TESDA / CHED</div>
+      <div class="glos-def">Technical-Vocational Ed &amp; Training / its regulator / Commission on Higher Education. Three separate student populations.</div>
+    </div>
+    <div class="glos-item">
+      <div class="glos-term">RA 10931 / HB 2589 / HB 9275</div>
+      <div class="glos-def">Free Tuition Law (SUCs) / ₱15B Student Loan Fund bill / Proposed 8% monthly interest rate cap. Last one is our key regulatory risk.</div>
+    </div>
+  </div>
+
+
+  <div class="foot"><span>March 2026</span><span>2 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 3 — SITUATION                             ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Situation</div>
+  <h2>The Philippines Has 5.2M Students and a Broken Financing System</h2>
+
+  <div class="row" style="gap:18px; flex:1;">
+    <div class="col" style="max-width:440px;">
+      <h3 class="mb8">Enrollment (AY 2024–25)</h3>
+      <div class="wf" style="margin-bottom:14px;">
+        <div class="wf-row">
+          <div class="wf-label">Tertiary (CHED) — 3.8M</div>
+          <div class="wf-track"><div class="wf-fill" style="width:73%; background:#FF6B6B;">GER 47.4% ↑</div></div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-label">TVET (TESDA) — 1.4M</div>
+          <div class="wf-track"><div class="wf-fill" style="width:27%; background:#2EC4B6;">102 micro-cred progs</div></div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-label" style="font-weight:700;">TAM total — 5.2M</div>
+          <div class="wf-track"><div class="wf-fill" style="width:100%; background:#2D3436;">Combined</div></div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-label">SAM (financeable) — 2.5M</div>
+          <div class="wf-track"><div class="wf-fill" style="width:48%; background:#E67E22;">₱20–60K/mo HH income</div></div>
+        </div>
+      </div>
+      <hr>
+      <h3 class="mb8">Why Demand Is Structural</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div class="card" style="padding:10px;">
+          <div class="stat" style="font-size:24px;">35%</div>
+          <div class="stat-sub">Dropout rate — financial hardship is #1 cause (CHED 2023)</div>
+        </div>
+        <div class="card" style="padding:10px;">
+          <div class="stat" style="font-size:24px;">86.7%</div>
+          <div class="stat-sub">HEIs are private (1,714 of 1,977) — not covered by Free Tuition Law</div>
+        </div>
+        <div class="card" style="padding:10px;">
+          <div class="stat" style="font-size:24px;">2.19M</div>
+          <div class="stat-sub">OFW families — education is #1 use of $35.6B annual remittances</div>
+        </div>
+        <div class="card" style="padding:10px;">
+          <div class="stat" style="font-size:24px;">₱25–80K</div>
+          <div class="stat-sub">Annual cost at private HEI (tuition + fees + living) — banks won't finance</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3 class="mb8">Why the Gap Persists — Three System Failures</h3>
+      <div class="card-red mb8" style="padding:13px;">
+        <div class="note-title" style="color:#C0392B; margin-bottom:6px;">① Government Programs: Restrictive by Design</div>
+        <table>
+          <thead><tr><th style="background:#F7F8FA;color:#2D3436;font-size:10px;">Program</th><th style="background:#F7F8FA;color:#2D3436;font-size:10px;">Rate</th><th style="background:#F7F8FA;color:#2D3436;font-size:10px;">Structural Barrier</th></tr></thead>
+          <tbody>
+            <tr><td><strong>SSS EALP</strong></td><td class="tn">3% APR</td><td style="font-size:11px; color:#C0392B;">Need 36 SSS contributions; income ≤₱25K/mo</td></tr>
+            <tr><td><strong>Pag-IBIG HELPS</strong></td><td class="tn">10.5% APR</td><td style="font-size:11px; color:#C0392B;">Capped at member's savings balance</td></tr>
+            <tr><td><strong>UniFAST / TES</strong></td><td class="tn">0% grant</td><td style="font-size:11px; color:#C0392B;">SUC/LUC only; covers tuition not living costs; 8-week processing</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-amber mb8" style="padding:13px;">
+        <div class="note-title" style="color:#CA6F1E; margin-bottom:5px;">② Banks: Wrong Product for This Segment</div>
+        <p style="font-size:12px;">BDO/BPI personal loans require stable employment + collateral + min ₱25K/mo income. Processing: 2–4 weeks vs. tuition deadline of 1–3 days. Students and thin-file households are structurally excluded. No education-specific product exists at any major Philippine bank.</p>
+      </div>
+      <div class="card-teal" style="padding:13px;">
+        <div class="note-title" style="color:#1A9E93; margin-bottom:5px;">③ The Excluded Middle — Our Target</div>
+        <p style="font-size:12px;">Households earning ₱20–60K/month, enrolled in private HEIs, needing ₱30–200K for tuition + living + board exam prep. <strong>Too wealthy for UniFAST. Too thin-file for banks. Too far from a Bukas school partner.</strong> This segment has demonstrated willingness-to-pay — they borrow informally at 5–10%/mo from informal lenders (5/6 system).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>3 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 4 — MARKET SIZING (bottom-up)             ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide offwhite">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Market Sizing</div>
+  <h2>Top-Down Says 137K Loans/yr — Bottom-Up Says 55–83K. Use the Conservative Number.</h2>
+
+  <div class="row" style="gap:18px; flex:1;">
+    <div class="col">
+      <h3 class="mb8">Top-Down (Funnel)</h3>
+      <div class="wf" style="margin-bottom:4px;">
+        <div class="wf-row"><div class="wf-label">TAM: All students</div><div class="wf-track"><div class="wf-fill" style="width:100%;background:#2D3436;">5,200,000</div></div></div>
+        <div class="wf-row"><div class="wf-label">SAM: Financeable</div><div class="wf-track"><div class="wf-fill" style="width:48%;background:#FF6B6B;">2,500,000</div></div></div>
+        <div class="wf-row"><div class="wf-label">SOM: Year 5 target</div><div class="wf-track"><div class="wf-fill" style="width:2.6%;background:#2EC4B6;">137,000</div></div></div>
+      </div>
+      <div class="note note-amber mt8">
+        <div class="note-title">McKinsey flag</div>
+        Top-down SOM (137K) is a planning target, not a market derivation. It tells you what you need, not what's achievable. Always cross-check bottom-up.
+      </div>
+
+      <h3 class="mb8 mt16">Bottom-Up (School × Penetration × Conversion)</h3>
+      <table>
+        <thead><tr><th>Scenario</th><th>Schools</th><th>Students/school</th><th>Apply rate</th><th>Approval rate</th><th class="h-teal">Loans/yr</th></tr></thead>
+        <tbody>
+          <tr class="tr-cost"><td><strong>Conservative</strong></td><td class="tn">230</td><td class="tn">5,000</td><td class="tn">8%</td><td class="tn">40%</td><td class="tn pos">36,800</td></tr>
+          <tr class="tr-highlight"><td><strong>Base case</strong></td><td class="tn">230</td><td class="tn">5,000</td><td class="tn">12%</td><td class="tn">60%</td><td class="tn pos">82,800</td></tr>
+          <tr class="tr-teal"><td><strong>Optimistic</strong></td><td class="tn">230</td><td class="tn">5,000</td><td class="tn">15%</td><td class="tn">60%</td><td class="tn pos">103,500</td></tr>
+        </tbody>
+      </table>
+      <div class="note note-teal mt8">
+        <div class="note-title">Verdict</div>
+        Top-down SOM 137K sits between our optimistic (103K) and an aggressive 150K+ scenario. It's aspirational but not impossible. For financial projections, use 55–83K as the honest base range.
+      </div>
+    </div>
+
+    <div class="col" style="max-width:340px;">
+      <h3 class="mb8">Key Market Assumptions</h3>
+      <div class="card mb8" style="padding:12px;">
+        <div style="font-size:11px; font-weight:700; color:#FF6B6B; margin-bottom:5px;">School partner ramp</div>
+        <table>
+          <thead><tr><th style="background:#F0F0F0;color:#555;font-size:10px;">Year</th><th style="background:#F0F0F0;color:#555;font-size:10px;">Partner schools</th><th style="background:#F0F0F0;color:#555;font-size:10px;">New schools/yr</th></tr></thead>
+          <tbody>
+            <tr><td>Y1 (pilot)</td><td class="tn">2–5</td><td class="tn">—</td></tr>
+            <tr><td>Y2</td><td class="tn">20</td><td class="tn">15–18</td></tr>
+            <tr><td>Y3</td><td class="tn">60</td><td class="tn">40</td></tr>
+            <tr><td>Y5</td><td class="tn">230</td><td class="tn">85</td></tr>
+          </tbody>
+        </table>
+        <div class="note note-red mt8" style="padding:8px 10px;">
+          <div class="note-title">Concentration risk</div>
+          <span style="font-size:11px;">Cap any single school at &lt;12% of portfolio. With 230 schools, one PHINMA-chain closure shouldn't threaten the book.</span>
+        </div>
+      </div>
+
+      <div class="card mb8" style="padding:12px;">
+        <div style="font-size:11px; font-weight:700; color:#2EC4B6; margin-bottom:5px;">Average loan size trajectory</div>
+        <p style="font-size:12px; color:#666;">Pilot: ₱80K avg (education loan). Year 3: ₱75–85K (mix of Sigla + Education). Year 5: ₱85–90K (student loan grows in mix). Higher avg ticket = better unit economics per servicing cost.</p>
+      </div>
+
+      <div class="card card-red" style="padding:12px;">
+        <div style="font-size:11px; font-weight:700; color:#C0392B; margin-bottom:5px;">What could make SOM wrong</div>
+        <p style="font-size:12px; color:#666;">① GCash locks in school exclusivity across Mapua + STI chains (combined ~200K students). ② HB 9275 passes — tighter rates slow school adoption. ③ School MOUs take 3–6 months per school (admin resistance to sharing student data).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>4 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 5 — THREE PRODUCTS                        ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Solution Stack</div>
+  <h2>Three Products — ₱5K to ₱200K — Covering All Three Student Populations</h2>
+
+  <div class="row" style="gap:14px; flex:1; align-items:stretch;">
+
+    <!-- SIGLA -->
+    <div class="col" style="border:1.5px solid #F0D080; border-radius:12px; padding:18px; display:flex; flex-direction:column;">
+      <div style="font-size:9.5px; font-weight:800; letter-spacing:1.5px; color:#E67E22; text-transform:uppercase; margin-bottom:5px;">Product 1 · MVP / Low-Ticket</div>
+      <h3 style="font-size:17px; color:#E67E22; margin-bottom:3px;">SIGLA</h3>
+      <div style="font-size:11.5px; color:#999; margin-bottom:10px;">TVET &amp; Short-Course Financing</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;">
+        <div class="card-amber" style="padding:9px; text-align:center;"><div class="stat" style="font-size:22px; color:#E67E22;">₱5–50K</div><div class="stat-sub">Loan range</div></div>
+        <div class="card-amber" style="padding:9px; text-align:center;"><div class="stat" style="font-size:22px; color:#E67E22;">3–12 mo</div><div class="stat-sub">Term</div></div>
+      </div>
+      <p style="font-size:12px; color:#666; flex:1;">1.4M TVET enrollees/year (TESDA 2024). NCR leads: 411K. TESDA micro-credentialing launched 2025 — 102 programmes across 57 institutions. Faster capital cycle. Lower per-loan exposure mitigates model uncertainty in Year 1.</p>
+      <div class="mt8 card-amber" style="padding:10px;">
+        <div style="font-size:10.5px; font-weight:700; color:#CA6F1E;">₱30K / 9mo example · PMT ₱4,202/mo</div>
+        <div style="font-size:12px; color:#555; margin-top:3px;">Revenue ₱8,717 · ECL ₱1,152 · CoF ₱1,800 · CAC ₱2,000 · Opex ₱1,500<br><strong>Profit: ₱2,265 (ROC 7.6% on ₱30K)</strong> · Breakeven PD: <strong>29.7%</strong></div>
+      </div>
+    </div>
+
+    <!-- EDUCATION LOAN -->
+    <div class="col" style="border:2px solid #FF6B6B; border-radius:12px; padding:18px; display:flex; flex-direction:column; box-shadow:0 4px 20px rgba(255,107,107,0.1);">
+      <div style="font-size:9.5px; font-weight:800; letter-spacing:1.5px; color:#FF6B6B; text-transform:uppercase; margin-bottom:5px;">Product 2 · Flagship ⭐ · Pilot Product</div>
+      <h3 style="font-size:17px; color:#FF6B6B; margin-bottom:3px;">EDUCATION LOAN</h3>
+      <div style="font-size:11.5px; color:#999; margin-bottom:10px;">For Parents &amp; Working Adults</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;">
+        <div class="card-coral" style="padding:9px; text-align:center;"><div class="stat" style="font-size:22px;">₱20–150K</div><div class="stat-sub">Loan range</div></div>
+        <div class="card-coral" style="padding:9px; text-align:center;"><div class="stat" style="font-size:22px;">6–24 mo</div><div class="stat-sub">Term</div></div>
+      </div>
+      <p style="font-size:12px; color:#666; flex:1;">Targets households ₱20–60K/mo at private HEIs (86.7% of 1,977 institutions). OFW families are anchor segment — they have income certainty and high education motivation. No grace period = immediate cash flow, lower credit risk vs. Student Loan. Best risk-adjusted unit economics of the three.</p>
+      <div class="mt8 card-coral" style="padding:10px;">
+        <div style="font-size:10.5px; font-weight:700; color:#FF6B6B;">₱80K / 24mo example · PMT ₱5,741/mo</div>
+        <div style="font-size:12px; color:#555; margin-top:3px;">Revenue ₱60,194 · ECL ₱3,194 · CoF ₱12,800 · CAC ₱2,000 · Opex ₱1,500<br><strong>Profit: ₱40,699 (ROC 50.9% on ₱80K)</strong> · Breakeven PD: <strong>137%</strong></div>
+      </div>
+    </div>
+
+    <!-- STUDENT LOAN -->
+    <div class="col" style="border:1.5px solid #2EC4B6; border-radius:12px; padding:18px; display:flex; flex-direction:column;">
+      <div style="font-size:9.5px; font-weight:800; letter-spacing:1.5px; color:#2EC4B6; text-transform:uppercase; margin-bottom:5px;">Product 3 · Phase 2 · Unique in Market</div>
+      <h3 style="font-size:17px; color:#2EC4B6; margin-bottom:3px;">STUDENT LOAN</h3>
+      <div style="font-size:11.5px; color:#999; margin-bottom:10px;">With Academic Grace Period</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;">
+        <div class="card-teal" style="padding:9px; text-align:center;"><div class="stat" style="font-size:22px; color:#2EC4B6;">₱30–200K</div><div class="stat-sub">Loan range</div></div>
+        <div class="card-teal" style="padding:9px; text-align:center;"><div class="stat" style="font-size:22px; color:#2EC4B6;">12–36 mo</div><div class="stat-sub">+ 6mo grace</div></div>
+      </div>
+      <p style="font-size:12px; color:#666; flex:1;">3.8M tertiary students. 6-month interest-only grace aligned to academic calendar — unique differentiator, neither Bukas nor GCash's Study Now Pay Later (SNPL) offer this. Higher revenue per loan but requires more sophisticated credit scoring (no income at time of borrowing). Phase 2 once pilot data establishes default rate benchmark.</p>
+      <div class="mt8 card-teal" style="padding:10px;">
+        <div style="font-size:10.5px; font-weight:700; color:#1A9E93;">₱100K / 36mo example · PMT ₱6,431/mo (post-grace)</div>
+        <div style="font-size:12px; color:#555; margin-top:3px;">Revenue ₱125,335 · ECL ₱4,508 · CoF ₱24,000 · CAC ₱2,000 · Opex ₱1,500<br><strong>Profit: ₱93,328 (ROC 93.3% on ₱100K)</strong> · Breakeven PD: <strong>217%</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>5 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 6 — UNIT ECONOMICS (corrected)            ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Financial Proof · Corrected Model</div>
+  <h2>Why the Breakeven PD Is So High: 4.9%/mo + Correct EAD Calculation</h2>
+
+  <div class="note note-amber mb12">
+    <div class="note-title">ECL methodology</div>
+    All calculations use ECL = PD × LGD × <strong>Avg EAD</strong> (average outstanding balance over loan life), not full loan principal. On a declining-balance loan, avg EAD ≈ 50–60% of original amount. CAC ₱2,000/loan is included in all unit economics.
+  </div>
+
+  <div class="row" style="gap:14px; margin-bottom:12px;">
+    <!-- Sigla -->
+    <div class="col" style="background:#FAFAFA; border-radius:10px; padding:14px;">
+      <div style="font-size:10.5px; font-weight:800; color:#E67E22; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Sigla · ₱30K / 9mo · Avg EAD ₱17,726</div>
+      <div class="wf">
+        <div class="wf-row"><div class="wf-label">Interest (PMT×9 − ₱30K)</div><div class="wf-track"><div class="wf-fill" style="width:90%; background:#FF6B6B;">₱7,817</div></div><div class="wf-val">₱7,817</div></div>
+        <div class="wf-row"><div class="wf-label">Fee (3%)</div><div class="wf-track"><div class="wf-fill" style="width:10%; background:#E67E22;"></div></div><div class="wf-val">₱900</div></div>
+        <div class="wf-row"><div class="wf-label" style="font-weight:700;">Total Revenue</div><div class="wf-track"><div class="wf-fill" style="width:100%; background:#2D3436;">₱8,717</div></div><div class="wf-val" style="font-weight:800;">₱8,717</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− ECL (10%×65%×₱17,726)</div><div class="wf-track"><div class="wf-fill" style="width:13%; background:#E74C3C;"></div></div><div class="wf-val neg">−₱1,152</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− CoF (8%×9/12×₱30K)</div><div class="wf-track"><div class="wf-fill" style="width:21%; background:#E74C3C;"></div></div><div class="wf-val neg">−₱1,800</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− CAC</div><div class="wf-track"><div class="wf-fill" style="width:23%; background:#C0392B;"></div></div><div class="wf-val neg">−₱2,000</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− Opex</div><div class="wf-track"><div class="wf-fill" style="width:17%; background:#C0392B;"></div></div><div class="wf-val neg">−₱1,500</div></div>
+        <div class="wf-row"><div class="wf-label" style="font-weight:700; color:#27AE60;">NET PROFIT</div><div class="wf-track"><div class="wf-fill" style="width:26%; background:#27AE60;">₱2,265</div></div><div class="wf-val pos" style="font-weight:800;">₱2,265</div></div>
+      </div>
+      <div style="text-align:center; margin-top:8px;"><span style="font-size:11px; color:#888;">Return on Capital: </span><span style="font-size:15px; font-weight:800; color:#E67E22;">7.6%</span><span style="font-size:11px; color:#888; margin-left:12px;">Breakeven PD: </span><span style="font-size:15px; font-weight:800; color:#E67E22;">29.7%</span></div>
+    </div>
+
+    <!-- Education Loan -->
+    <div class="col" style="background:#FFF8F8; border-radius:10px; padding:14px; border:1px solid rgba(255,107,107,0.15);">
+      <div style="font-size:10.5px; font-weight:800; color:#FF6B6B; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Education Loan · ₱80K / 24mo · Avg EAD ₱49,144 ⭐</div>
+      <div class="wf">
+        <div class="wf-row"><div class="wf-label">Interest (PMT×24 − ₱80K)</div><div class="wf-track"><div class="wf-fill" style="width:96%; background:#FF6B6B;">₱57,794</div></div><div class="wf-val">₱57,794</div></div>
+        <div class="wf-row"><div class="wf-label">Fee (3%)</div><div class="wf-track"><div class="wf-fill" style="width:4%; background:#E67E22;"></div></div><div class="wf-val">₱2,400</div></div>
+        <div class="wf-row"><div class="wf-label" style="font-weight:700;">Total Revenue</div><div class="wf-track"><div class="wf-fill" style="width:100%; background:#2D3436;">₱60,194</div></div><div class="wf-val" style="font-weight:800;">₱60,194</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− ECL (10%×65%×₱49,144)</div><div class="wf-track"><div class="wf-fill" style="width:5%; background:#E74C3C;"></div></div><div class="wf-val neg">−₱3,194</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− CoF (8%×2yr×₱80K)</div><div class="wf-track"><div class="wf-fill" style="width:21%; background:#E74C3C;"></div></div><div class="wf-val neg">−₱12,800</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− CAC</div><div class="wf-track"><div class="wf-fill" style="width:3%; background:#C0392B;"></div></div><div class="wf-val neg">−₱2,000</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− Opex</div><div class="wf-track"><div class="wf-fill" style="width:2%; background:#C0392B;"></div></div><div class="wf-val neg">−₱1,500</div></div>
+        <div class="wf-row"><div class="wf-label" style="font-weight:700; color:#27AE60;">NET PROFIT</div><div class="wf-track"><div class="wf-fill" style="width:68%; background:#27AE60;">₱40,699</div></div><div class="wf-val pos" style="font-weight:800;">₱40,699</div></div>
+      </div>
+      <div style="text-align:center; margin-top:8px;"><span style="font-size:11px; color:#888;">Return on Capital: </span><span style="font-size:15px; font-weight:800; color:#FF6B6B;">50.9%</span><span style="font-size:11px; color:#888; margin-left:12px;">Breakeven PD: </span><span style="font-size:15px; font-weight:800; color:#FF6B6B;">137%</span></div>
+    </div>
+
+    <!-- Student Loan -->
+    <div class="col" style="background:#F0FFFE; border-radius:10px; padding:14px;">
+      <div style="font-size:10.5px; font-weight:800; color:#2EC4B6; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Student Loan · ₱100K / 36mo (6mo grace) · Avg EAD ₱69,351</div>
+      <div class="wf">
+        <div class="wf-row"><div class="wf-label">Interest (grace + amort)</div><div class="wf-track"><div class="wf-fill" style="width:98%; background:#2EC4B6;">₱122,335</div></div><div class="wf-val">₱122,335</div></div>
+        <div class="wf-row"><div class="wf-label">Fee (3%)</div><div class="wf-track"><div class="wf-fill" style="width:2%; background:#E67E22;"></div></div><div class="wf-val">₱3,000</div></div>
+        <div class="wf-row"><div class="wf-label" style="font-weight:700;">Total Revenue</div><div class="wf-track"><div class="wf-fill" style="width:100%; background:#2D3436;">₱125,335</div></div><div class="wf-val" style="font-weight:800;">₱125,335</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− ECL (10%×65%×₱69,351)</div><div class="wf-track"><div class="wf-fill" style="width:4%; background:#E74C3C;"></div></div><div class="wf-val neg">−₱4,508</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− CoF (8%×3yr×₱100K)</div><div class="wf-track"><div class="wf-fill" style="width:19%; background:#E74C3C;"></div></div><div class="wf-val neg">−₱24,000</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− CAC</div><div class="wf-track"><div class="wf-fill" style="width:2%; background:#C0392B;"></div></div><div class="wf-val neg">−₱2,000</div></div>
+        <div class="wf-row"><div class="wf-label" style="color:#E74C3C;">− Opex</div><div class="wf-track"><div class="wf-fill" style="width:1%; background:#C0392B;"></div></div><div class="wf-val neg">−₱1,500</div></div>
+        <div class="wf-row"><div class="wf-label" style="font-weight:700; color:#27AE60;">NET PROFIT</div><div class="wf-track"><div class="wf-fill" style="width:74%; background:#27AE60;">₱93,328</div></div><div class="wf-val pos" style="font-weight:800;">₱93,328</div></div>
+      </div>
+      <div style="text-align:center; margin-top:8px;"><span style="font-size:11px; color:#888;">Return on Capital: </span><span style="font-size:15px; font-weight:800; color:#2EC4B6;">93.3%</span><span style="font-size:11px; color:#888; margin-left:12px;">Breakeven PD: </span><span style="font-size:15px; font-weight:800; color:#2EC4B6;">217%</span></div>
+    </div>
+  </div>
+
+  <!-- Summary table -->
+  <table style="font-size:11.5px;">
+    <thead>
+      <tr>
+        <th>Product</th><th class="h-coral">Revenue</th><th class="h-red">ECL (EAD-based)</th><th class="h-red">CoF</th><th class="h-red">CAC</th><th class="h-red">Opex</th><th class="h-teal">Net Profit</th><th class="h-teal">Return on Capital*</th><th class="h-green">Breakeven PD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Sigla</strong> ₱30K/9mo</td><td class="tn">₱8,717</td><td class="tn neg">₱1,152</td><td class="tn neg">₱1,800</td><td class="tn neg">₱2,000</td><td class="tn neg">₱1,500</td><td class="tn pos">₱2,265</td><td class="tn pos">7.6%</td><td class="tn neu" style="font-weight:800;">29.7%</td></tr>
+      <tr class="tr-coral"><td><strong>Edu Loan ⭐</strong> ₱80K/24mo</td><td class="tn">₱60,194</td><td class="tn neg">₱3,194</td><td class="tn neg">₱12,800</td><td class="tn neg">₱2,000</td><td class="tn neg">₱1,500</td><td class="tn pos">₱40,699</td><td class="tn pos">50.9%</td><td class="tn pos" style="font-weight:800;">137%</td></tr>
+      <tr><td><strong>Student Loan</strong> ₱100K/36mo</td><td class="tn">₱125,335</td><td class="tn neg">₱4,508</td><td class="tn neg">₱24,000</td><td class="tn neg">₱2,000</td><td class="tn neg">₱1,500</td><td class="tn pos">₱93,328</td><td class="tn pos">93.3%</td><td class="tn pos" style="font-weight:800;">217%</td></tr>
+    </tbody>
+  </table>
+  <div style="font-size:10px; color:#aaa; margin-top:4px;">* Return on Capital = Net Profit ÷ Loan Principal deployed. Not profit/revenue. Sigla: ₱2,265÷₱30K=7.6%. Edu Loan: ₱40,699÷₱80K=50.9%. Student Loan: ₱93,328÷₱100K=93.3%.</div>
+
+  <div class="foot"><span>March 2026</span><span>6 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 7 — SCENARIO STRESS TEST                  ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide offwhite">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Stress Test</div>
+  <h2>Education Loan and Student Loan Survive Every Scenario. Sigla Breaks Under Rate Cap.</h2>
+
+  <!-- Full scenario table -->
+  <table style="margin-bottom:14px;">
+    <thead>
+      <tr>
+        <th style="width:160px;">Product</th>
+        <th class="h-red">🐻 Bear<br><span style="font-weight:400;font-size:9.5px;">PD=20%, LGD=75%</span></th>
+        <th class="h-teal">◆ Base<br><span style="font-weight:400;font-size:9.5px;">PD=10%, LGD=65%</span></th>
+        <th class="h-green">🐂 Bull<br><span style="font-weight:400;font-size:9.5px;">PD=4%, LGD=50%</span></th>
+        <th class="h-amber">⚖ Regulated<br><span style="font-weight:400;font-size:9.5px;">Rate 2.5%/mo (HB 9275)</span></th>
+        <th class="h-grey">🏦 CoF Spike Y1<br><span style="font-weight:400;font-size:9.5px;">CoF=18% (equity-heavy)</span></th>
+        <th class="h-green">Break-<br>even PD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Sigla</strong><br><span class="small">₱30K · 9mo</span></td>
+        <td class="tn pos">₱758<br><span class="small">ECL ₱2,659</span></td>
+        <td class="tn pos" style="background:#F0FFFE;">₱2,265<br><span class="small">ECL ₱1,152</span></td>
+        <td class="tn pos">₱3,063<br><span class="small">ECL ₱354</span></td>
+        <td class="tn neg">−₱1,646<br><span class="small">Rev drops to ₱4,773</span></td>
+        <td class="tn pos">₱2,265<br><span class="small">CoF unchanged at 9mo</span></td>
+        <td class="tn neu" style="font-weight:800;">29.7%</td>
+      </tr>
+      <tr class="tr-coral">
+        <td><strong>Edu Loan ⭐</strong><br><span class="small">₱80K · 24mo</span></td>
+        <td class="tn pos">₱36,522<br><span class="small">ECL ₱7,372</span></td>
+        <td class="tn pos" style="background:#FFF0F0;">₱40,699<br><span class="small">ECL ₱3,194</span></td>
+        <td class="tn pos">₱42,911<br><span class="small">ECL ₱982</span></td>
+        <td class="tn pos">₱10,489<br><span class="small">Rev ₱29,753; still +13%</span></td>
+        <td class="tn pos">₱24,699<br><span class="small">CoF ₱28,800 at 18%</span></td>
+        <td class="tn pos" style="font-weight:800;">137%</td>
+      </tr>
+      <tr>
+        <td><strong>Student Loan</strong><br><span class="small">₱100K · 36mo</span></td>
+        <td class="tn pos">₱87,433<br><span class="small">ECL ₱10,403</span></td>
+        <td class="tn pos" style="background:#F0FFFE;">₱93,328<br><span class="small">ECL ₱4,508</span></td>
+        <td class="tn pos">₱96,448<br><span class="small">ECL ₱1,387</span></td>
+        <td class="tn pos">₱38,250<br><span class="small">Est. at 2.5%/mo</span></td>
+        <td class="tn pos">₱63,328<br><span class="small">CoF ₱54,000 at 18%</span></td>
+        <td class="tn pos" style="font-weight:800;">217%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row" style="gap:16px;">
+    <!-- Gauges -->
+    <div class="col">
+      <h3 style="font-size:12px; margin-bottom:10px;">Default Buffer: Current Expected PD vs. Breakeven</h3>
+      <div class="gauge">
+        <div class="g-label"><span>Sigla — breakeven 29.7%</span><span class="neu">3× buffer</span></div>
+        <div class="g-track" style="height:12px;">
+          <div class="g-fill" style="width:29.7%; background:#E67E22;"></div>
+          <div class="g-pin" style="left:10%;"><div class="g-pin-label">PD=10%</div></div>
+        </div>
+      </div>
+      <div class="gauge" style="margin-top:14px;">
+        <div class="g-label"><span>Education Loan — breakeven 137%</span><span class="pos">13.7× buffer</span></div>
+        <div class="g-track" style="height:12px;">
+          <div class="g-fill" style="width:100%; background:#FF6B6B;"></div>
+          <div class="g-pin" style="left:7.3%;"><div class="g-pin-label">PD=10%</div></div>
+        </div>
+      </div>
+      <div class="gauge" style="margin-top:14px;">
+        <div class="g-label"><span>Student Loan — breakeven 217%</span><span class="pos">21.7× buffer</span></div>
+        <div class="g-track" style="height:12px;">
+          <div class="g-fill" style="width:100%; background:#2EC4B6;"></div>
+          <div class="g-pin" style="left:4.6%;"><div class="g-pin-label">PD=10%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key sensitivities -->
+    <div class="col">
+      <h3 style="font-size:12px; margin-bottom:8px;">What Actually Kills Education Loan Economics</h3>
+      <table>
+        <thead><tr><th>Variable</th><th class="h-coral">If changes to</th><th class="h-teal">Edu Loan profit</th><th class="h-grey">Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>PD (base 10%)</td><td>40%</td><td class="tn pos">₱31,116</td><td class="small pos">Survive</td></tr>
+          <tr><td>PD (base 10%)</td><td>100%</td><td class="tn pos">₱11,950</td><td class="small pos">Still positive!</td></tr>
+          <tr><td>Rate cap at 2.5%/mo</td><td>HB 9275</td><td class="tn pos">₱10,489</td><td class="small pos">Survive (13%)</td></tr>
+          <tr><td>CoF (base 8%)</td><td>18% (Y1 equity)</td><td class="tn pos">₱24,699</td><td class="small pos">Survive (31%)</td></tr>
+          <tr><td>CoF &gt;13% + PD 40%</td><td>Combined shock</td><td class="tn neg">−₱6,000 est.</td><td class="small neg">Loss zone</td></tr>
+          <tr><td>CAC blowout</td><td>₱8,000/loan</td><td class="tn pos">₱34,699</td><td class="small pos">Still 43% ROC</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note note-red mt12">
+    <div class="note-title">The Only Real Stopper</div>
+    CoF &gt;13% <em>combined with</em> PD &gt;40% simultaneously. Probability estimate: ~5%. Each individually is survivable — the spread at 4.9%/mo absorbs substantial credit shock. Sigla is the most vulnerable product: if HB 9275 is amended to ≤2.5%/mo, Sigla goes negative and should be discontinued. Education Loan and Student Loan remain viable under that scenario.
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>7 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 8 — COST OF FUNDS + YEAR 1 REALITY       ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Capital Structure · McKinsey Flag</div>
+  <h2>The 8% CoF Is a Mature-State Assumption — Year 1 Will Be 18–25%</h2>
+
+  <div class="row" style="gap:18px; flex:1;">
+    <div class="col">
+      <h3 class="mb8">Salmon's Funding Stack</h3>
+      <table>
+        <thead><tr><th>Source</th><th class="h-coral">Rate</th><th>Availability</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>IFC / DFI Debt</strong></td><td class="tn pos">6–8%</td><td>Confirmed</td><td class="small">Existing investor; DFI rates ~200–400bps over sovereign</td></tr>
+          <tr><td><strong>Nordic Bond (€150M)</strong></td><td class="tn neu">9–12%</td><td>Confirmed</td><td class="small">June 2025 framework; USD SOFR +600–800bps</td></tr>
+          <tr><td><strong>Bank credit facilities</strong></td><td class="tn neu">8–11%</td><td>Medium</td><td class="small">Available to licensed lending companies post-track-record</td></tr>
+          <tr><td><strong>Retail deposits</strong></td><td class="tn pos">3–5%</td><td>Growing</td><td class="small">Via Rural Bank of Sta. Rosa Laguna; slowest to scale</td></tr>
+          <tr><td><strong>Equity (implied cost)</strong></td><td class="tn neg">25–35%</td><td>Deployed</td><td class="small">Series A-2/B investors expect 25%+ IRR — most expensive capital</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note note-red mt12">
+        <div class="note-title">Year 1 Reality</div>
+        In the pilot phase, Salmon will primarily use <strong>existing equity capital</strong> (no new debt raised for a 50-loan pilot). Implied CoF = 25–35% (equity cost). At 18% blended CoF (optimistic Year 1 scenario), Education Loan still earns ₱24,699 profit. At 25% equity CoF, profit drops to ₱13,499 but remains positive.
+      </div>
+    </div>
+
+    <div class="col" style="max-width:360px;">
+      <h3 class="mb8">CoF Trajectory: Pilot → Maturity</h3>
+      <table>
+        <thead><tr><th>Phase</th><th class="h-coral">Blended CoF</th><th>Capital mix</th><th class="h-teal">Edu Loan profit</th></tr></thead>
+        <tbody>
+          <tr class="tr-cost"><td><strong>Pilot (Y1)</strong></td><td class="tn neg">18–25%</td><td class="small">Equity dominant</td><td class="tn pos">₱13,499–₱24,699</td></tr>
+          <tr><td><strong>Year 2</strong></td><td class="tn neu">12–15%</td><td class="small">IFC drawdown</td><td class="tn pos">₱29,099–₱35,699</td></tr>
+          <tr><td><strong>Year 3</strong></td><td class="tn neu">10–12%</td><td class="small">Facility utilisation</td><td class="tn pos">₱36,899–₱40,699</td></tr>
+          <tr class="tr-teal"><td><strong>Year 5 (mature)</strong></td><td class="tn pos">8–9%</td><td class="small">Diversified debt</td><td class="tn pos">₱40,699–₱41,499</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note note-amber mt12">
+        <div class="note-title">Implication for pilot decision</div>
+        Even at 25% CoF in Year 1, Education Loan earns ~₱13,499/loan — still positive. The pilot is not loss-making from a unit-economics perspective. The ₱850K opex is a <strong>fixed learning cost</strong>, not a sign that unit economics are broken.
+      </div>
+
+      <div class="note note-teal mt8">
+        <div class="note-title">Capital adequacy requirement</div>
+        Current: ₱1M (Metro Manila). Proposed HB 9275: ₱10M (10× increase). Salmon's existing Sunprime Finance licence is likely compliant. New education-specific entity would require ₱10M — plan for this in Series A raise.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>8 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 9 — COMPETITIVE LANDSCAPE                 ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Complication · Window Is Closing</div>
+  <h2>Bukas Is Stalling. GCash Is Scaling. 12–18 Months Before Exclusivity Locks Us Out.</h2>
+
+  <div class="comp-grid" style="margin-bottom:14px;">
+    <div class="comp-card" style="border-top:3px solid #4A90E2;">
+      <div class="comp-card-name">Bukas (ErudiFi)</div>
+      <div class="comp-card-detail">
+        1.5–4.9%/mo · 3–10% fee · 100+ schools<br>
+        <strong>27K students total in 6 years</strong> (~4,500/yr avg)<br>
+        $22M raised, no Series B announced<br>
+        Weak: no physical presence, no TVET, no OFW product<br>
+        2025: added 6 schools (Davao Doctors, DLSU-Dasmariñas)
+      </div>
+      <span class="threat-tag tt-m">⚠ Moderate — but not scaling</span>
+    </div>
+    <div class="comp-card" style="border-top:3px solid #00B5CC;">
+      <div class="comp-card-name">GCash SNPL (Fuse Financing)</div>
+      <div class="comp-card-detail">
+        Via GGives · 0–5.49%/mo · 0% processing fee<br>
+        <strong>5 schools (Mapua network) · launched Jul 2025</strong><br>
+        94M registered users · Ant Group + Ayala backing<br>
+        Weak: no physical agent network, purely digital<br>
+        Risk: if it cracks school onboarding → 10× Bukas pace
+      </div>
+      <span class="threat-tag tt-h">⚠⚠ HIGH if scales</span>
+    </div>
+    <div class="comp-card" style="border-top:3px solid #8E44AD;">
+      <div class="comp-card-name">InvestEd</div>
+      <div class="comp-card-detail">
+        ISA model · ~700 borrowers · founded ~2017<br>
+        ING-UNICEF fintech alumni (2021)<br>
+        <strong>Minimal activity since 2022 — likely pivoting</strong><br>
+        ISA failed: 38% informal employment, weak enforcement<br>
+        Lesson: over-innovative models don't work here
+      </div>
+      <span class="threat-tag tt-l">✓ Not a competitor</span>
+    </div>
+    <div class="comp-card" style="border-top:3px solid #27AE60;">
+      <div class="comp-card-name">SSS / Pag-IBIG / UniFAST</div>
+      <div class="comp-card-detail">
+        3–10.5% APR (subsidised) · 3–8 week processing<br>
+        SSS EALP: need 36 contributions + ≤₱25K income<br>
+        UniFAST: SUC/LUC only, tuition not living costs<br>
+        <strong>HB 2589: ₱15B BSP fund pending Senate</strong><br>
+        They serve a different (poorer) segment than us
+      </div>
+      <span class="threat-tag tt-l">✓ Complementary, not competitive</span>
+    </div>
+    <div class="comp-card" style="border-top:3px solid #95A5A6;">
+      <div class="comp-card-name">BDO / BPI / Metrobank</div>
+      <div class="comp-card-detail">
+        Personal loans 8–12% APR · min ₱25K/mo income<br>
+        2–4 week processing · no education-specific product<br>
+        Collateral required · excludes thin-file segment<br>
+        <strong>Not a real competitor for our segment</strong>
+      </div>
+      <span class="threat-tag tt-l">✓ Indirect at most</span>
+    </div>
+    <div class="comp-card" style="border-top:3px solid #FF6B6B; background:#FFF8F8;">
+      <div class="comp-card-name" style="color:#FF6B6B;">▸▸ Salmon (Proposed)</div>
+      <div class="comp-card-detail">
+        4.9%/mo + 3% fee — matches Bukas upper bound<br>
+        <strong>Three-product stack: ₱5K–₱200K</strong><br>
+        Physical agent network + digital underwriting<br>
+        Grace periods (unique) · Existing licence (Sunprime)<br>
+        Salmon credit data as underwriting proxy (DPD2+ 6.5%)
+      </div>
+      <span class="threat-tag tt-us">Our entry point</span>
+    </div>
+  </div>
+
+  <div class="row" style="gap:14px;">
+    <div class="note note-red col">
+      <div class="note-title">Why 12–18 months</div>
+      GCash at Bukas's historical pace = 20–25 schools by end-2026. But GCash has 10× the user base and 100× the distribution network. If they solve school admin onboarding (the bottleneck), they can reach 200 schools by 2027. Each school signed with exclusivity = permanently locked out for Salmon.
+    </div>
+    <div class="note note-teal col">
+      <div class="note-title">Salmon's defensible moat</div>
+      GCash is purely digital — it can't do school-embedded agents, cash disbursement at cashier windows, or relationship-based school administrator partnerships. Salmon's physical-digital hybrid is the moat. This is also why Bukas struggles to grow beyond Metro Manila private schools.
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>9 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 10 — REGULATORY LANDSCAPE                 ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide offwhite">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Regulatory Environment</div>
+  <h2>RA 10931 Is a Tailwind. HB 9275 Is the Only Real Threat — and It's Survivable.</h2>
+
+  <div class="row" style="gap:18px; flex:1;">
+    <div class="col">
+      <h3 class="mb8">Regulatory Framework</h3>
+      <table>
+        <thead><tr><th>Law / Rule</th><th>Regulator</th><th class="h-teal">Impact on Salmon</th></tr></thead>
+        <tbody>
+          <tr class="tr-teal"><td><strong>RA 10931</strong><br><span class="small">Free Higher Education</span></td><td>CHED</td><td style="font-size:11.5px; color:#1A9E93;"><strong>Tailwind:</strong> Made public HEIs free → 200 private HEIs closed → demand for private HEI financing increased. More students at private schools needing loans.</td></tr>
+          <tr class="tr-teal"><td><strong>HB 2589</strong><br><span class="small">Student Loan Fund</span></td><td>BSP / CHED</td><td style="font-size:11.5px; color:#1A9E93;"><strong>Tailwind:</strong> ₱15B BSP fund allocation normalises student borrowing. Creates awareness + legitimacy for education lending as a concept.</td></tr>
+          <tr><td><strong>RA 9474</strong><br><span class="small">Lending Company Act</span></td><td>SEC</td><td style="font-size:11.5px;">Salmon's existing Sunprime Finance licence covers this. No new entity required for pilot. RA 11765 (Consumer Finance Protection) requires fair lending disclosure.</td></tr>
+          <tr><td><strong>RA 10173</strong><br><span class="small">Data Privacy Act</span></td><td>NPC</td><td style="font-size:11.5px;">Critical for credit scoring using school data. Requires borrower consent for academic record sharing. School MOUs must include data privacy provisions.</td></tr>
+          <tr class="tr-cost"><td><strong>HB 9275</strong><br><span class="small">Proposed Rate Cap</span></td><td>SEC</td><td style="font-size:11.5px; color:#C0392B;"><strong>Risk:</strong> Proposed cap is 8%/mo (above our 4.9% — no impact as drafted). Real risk: Senate amendment to 2–3%/mo during deliberation. At 2.5%/mo: Sigla negative, Edu Loan survives at ₱10,489 (13% ROC).</td></tr>
+          <tr class="tr-cost"><td><strong>OLP Moratorium</strong><br><span class="small">Nov 2021 → 2026</span></td><td>SEC</td><td style="font-size:11.5px; color:#C0392B;">Online lending platform registrations frozen. Salmon's brick-and-mortar + existing licence = <strong>exempt</strong>. Moratorium expected to lift in late 2026.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col" style="max-width:340px;">
+      <h3 class="mb8">Rate Cap Scenario (HB 9275)</h3>
+      <table style="margin-bottom:10px;">
+        <thead><tr><th>Product</th><th class="h-coral">4.9%/mo</th><th class="h-amber">2.5%/mo cap</th><th class="h-grey">Viable?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sigla</strong></td><td class="tn pos">₱2,265</td><td class="tn neg">−₱1,646</td><td class="neg small">Discontinue</td></tr>
+          <tr class="tr-coral"><td><strong>Edu Loan ⭐</strong></td><td class="tn pos">₱40,699</td><td class="tn pos">₱10,489</td><td class="pos small">Yes — 13%</td></tr>
+          <tr><td><strong>Student Loan</strong></td><td class="tn pos">₱93,328</td><td class="tn pos">~₱38,250</td><td class="pos small">Yes — 38%</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note note-amber mb8">
+        <div class="note-title">HB 9275 probability assessment</div>
+        The bill proposes 8%/mo cap — that's actually higher than 4.9%, so it wouldn't change anything. The risk is if it's amended to 2–3%/mo during Senate deliberation. Current SEC Chair has signalled flexibility. Monitor FCIAP (consumer lending lobby) position. Probability of &lt;3%/mo cap passing: ~20%.
+      </div>
+
+      <div class="note note-teal">
+        <div class="note-title">Capital requirement increase</div>
+        Proposed: ₱1M → ₱10M (10× increase). For a pilot using existing Sunprime licence, no immediate impact. For a standalone education lending entity at scale, ₱10M is table stakes — include in Series A raise requirement.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>10 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 11 — DARK: KEY NUMBERS                   ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide dark">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Decision-Level Summary</div>
+  <h2 style="color:#C8F5F1;">Six Numbers. That's the Whole Case.</h2>
+
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:10px; flex:1;">
+    <div style="padding:18px; background:rgba(255,107,107,0.1); border-radius:10px; border:1px solid rgba(255,107,107,0.2);">
+      <div class="stat white" style="font-size:52px;">₱394B</div>
+      <div class="stat-sub" style="margin-top:8px; font-size:12px;">Annual education financing gap. Student/family demand exceeding formal supply. Formal penetration: &lt;2.3%.<br><span style="color:rgba(255,255,255,0.25); font-size:10px;">IFC Education Finance Assessment, 2024</span></div>
+    </div>
+    <div style="padding:18px; background:rgba(200,245,241,0.06); border-radius:10px; border:1px solid rgba(200,245,241,0.12);">
+      <div class="stat teal" style="font-size:52px;">137%</div>
+      <div class="stat-sub" style="margin-top:8px; font-size:12px;">Breakeven default rate on flagship Education Loan — using correct EAD model. Our expected PD is 10%.<br><span style="color:rgba(255,255,255,0.25); font-size:10px;">Corrected: ECL = PD × LGD × Avg EAD (₱49,144), not full principal</span></div>
+    </div>
+    <div style="padding:18px; background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+      <div class="stat white" style="font-size:52px; color:#FF6B6B;">4,500</div>
+      <div class="stat-sub" style="margin-top:8px; font-size:12px;">Bukas's average loans per year over 6 years. Against a 2.5M SAM — 0.18% penetration by the first mover.<br><span style="color:rgba(255,255,255,0.25); font-size:10px;">Bukas.ph / ErudiFi Crunchbase, 2025</span></div>
+    </div>
+    <div style="padding:18px; background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+      <div class="stat white" style="font-size:52px;">₱4.8M</div>
+      <div class="stat-sub" style="margin-top:8px; font-size:12px;">Pilot cost: 50 loans × ₱80K avg = ₱4M capital + ₱850K opex. Maximum downside if we exit at Month 3 kill gate: ₱850K.<br><span style="color:rgba(255,255,255,0.25); font-size:10px;">Pre-pilot validation: ₱15–25K, 4–6 weeks — <0.5% of pilot cost</span></div>
+    </div>
+    <div style="padding:18px; background:rgba(200,245,241,0.06); border-radius:10px; border:1px solid rgba(200,245,241,0.12);">
+      <div class="stat teal" style="font-size:52px;">35%</div>
+      <div class="stat-sub" style="margin-top:8px; font-size:12px;">College dropout rate driven by financial hardship. This is the demand signal — students want to stay enrolled and will borrow to do so.<br><span style="color:rgba(255,255,255,0.25); font-size:10px;">CHED Dropout Study, 2023</span></div>
+    </div>
+    <div style="padding:18px; background:rgba(243,156,18,0.07); border-radius:10px; border:1px solid rgba(243,156,18,0.15);">
+      <div class="stat amber" style="font-size:52px;">5 → ?</div>
+      <div class="stat-sub" style="margin-top:8px; font-size:12px;">GCash started with 5 Mapua schools in July 2025. With 94M users and Ant Group's capital, they can go from 5 to 200 schools faster than Bukas did in 6 years.<br><span style="color:rgba(255,255,255,0.25); font-size:10px;">GCash SNPL launch announcement, July 2025</span></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>11 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 12 — RISKS                               ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow">Risk Register · COSO 2017 / ISO 31000</div>
+  <h2>83 Risks Mapped. Top 5 Are All Manageable. One Combination Is a Stopper.</h2>
+
+  <div class="row" style="gap:18px; flex:1;">
+    <div class="col">
+      <div class="risk-item">
+        <div class="risk-score rs-h"><span style="font-size:9px;">P×I</span><span>20</span></div>
+        <div class="risk-body">
+          <div class="risk-title">Credit model miscalibration</div>
+          <div class="risk-desc">No Philippine education loan performance data exists. Every PD/LGD assumption is untested against this segment. P=70%, I=5. First 50-loan vintage will be drawn blind.</div>
+          <div class="risk-mit">✓ ₱15–25K validation phase first (4 binary tests). Build vintage DPD tracking from Loan #1. Use Salmon product-loan DPD2+ (6.5%) as proxy. Kill gate: PD &gt;8% at M3.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-score rs-h"><span style="font-size:9px;">P×I</span><span>16</span></div>
+        <div class="risk-body">
+          <div class="risk-title">GCash SNPL aggressive scaling</div>
+          <div class="risk-desc">94M users + Ant Group capital + government relationships. If they crack school onboarding, they reach 200+ schools by 2027. Exclusivity clauses lock us out permanently. P=50%, I=4.5.</div>
+          <div class="risk-mit">✓ Move fast on MOUs. Target non-Mapua schools (PHINMA 65K students, FEU network, STI chain). Offer school-originator revenue share GCash cannot match.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-score rs-h"><span style="font-size:9px;">P×I</span><span>15</span></div>
+        <div class="risk-body">
+          <div class="risk-title">HB 9275 rate cap (&lt;3%/mo amendment)</div>
+          <div class="risk-desc">If cap set at 2.5%/mo: Sigla goes negative, Edu Loan profits drop 74% to ₱10,489. Not a killer for flagship but fundamentally changes economics. P=20% (capped &lt;3%), I=5.</div>
+          <div class="risk-mit">✓ Education Loan viable at 2.5%/mo (13% ROC). Discontinue Sigla. Monitor SEC public hearings. Engage FCIAP consumer lending lobby for education carve-out.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-score rs-m"><span style="font-size:9px;">P×I</span><span>15</span></div>
+        <div class="risk-body">
+          <div class="risk-title">Liquidity gap at scale-up</div>
+          <div class="risk-desc">CoF ceiling: 13% absolute (above this, Education Loan margin compresses to near-zero). IFC + Nordic bond facility must remain accessible. P=50%, I=4.</div>
+          <div class="risk-mit">✓ Maintain 6-month liquidity runway minimum. Do not scale beyond ₱500M portfolio without confirmed credit facility at &lt;11%. CoF as primary RAG metric.</div>
+        </div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-score rs-m"><span style="font-size:9px;">P×I</span><span>14</span></div>
+        <div class="risk-body">
+          <div class="risk-title">Portfolio concentration risk</div>
+          <div class="risk-desc">If 30%+ of loans are from one school chain (e.g., PHINMA) and that chain has a systemic default event (closure, strike, scandal), correlates defaults beyond PD model. P=25%, I=4.5.</div>
+          <div class="risk-mit">✓ Hard cap: no single school &gt;12% of portfolio, no single region &gt;35%. Diversify to 10+ schools before exceeding ₱100M AUM.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col" style="max-width:310px;">
+      <h3 class="mb8">Risk Appetite Dashboard</h3>
+      <table style="font-size:11.5px;">
+        <thead><tr><th>Metric</th><th class="h-green" style="width:60px;">Green</th><th class="h-red" style="width:55px;">Red</th></tr></thead>
+        <tbody>
+          <tr><td>DPD30+ rate</td><td class="tn pos">&lt;8%</td><td class="tn neg">&gt;11%</td></tr>
+          <tr><td>Write-off rate (ann.)</td><td class="tn pos">&lt;6%</td><td class="tn neg">&gt;8%</td></tr>
+          <tr><td>Fraud loss rate</td><td class="tn pos">&lt;0.3%</td><td class="tn neg">&gt;0.6%</td></tr>
+          <tr><td>Cost of funds</td><td class="tn pos">&lt;11%</td><td class="tn neg">&gt;12.5%</td></tr>
+          <tr><td>Liquidity runway</td><td class="tn pos">&gt;9 months</td><td class="tn neg">&lt;6 months</td></tr>
+          <tr><td>Single school conc.</td><td class="tn pos">&lt;10%</td><td class="tn neg">&gt;12%</td></tr>
+          <tr><td>Regulatory findings</td><td class="tn pos">0 major</td><td class="tn neg">&gt;1</td></tr>
+          <tr><td>NPS (borrowers)</td><td class="tn pos">&gt;+20</td><td class="tn neg">&lt;0</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note note-red mt12">
+        <div class="note-title">⚠ The Combination Stopper</div>
+        CoF &gt;13% <em>and</em> PD &gt;40% simultaneously. Individually survivable. Together: Education Loan goes negative. Est. probability: ~5%. Trigger: emerging market credit crunch + Salmon-specific portfolio blowup.
+      </div>
+
+      <div class="card mt8" style="padding:12px; border-left:3px solid #636E72;">
+        <div style="font-size:10.5px; font-weight:700; color:#636E72; margin-bottom:5px;">Aggregate Risk Score</div>
+        <div style="font-size:22px; font-weight:900; color:#2D3436;">3.42 / 5.0</div>
+        <p style="font-size:11.5px; color:#888; margin-top:3px;">Elevated but manageable. 83 risks mapped across 8 categories (COSO 2017). Estimated risk mitigation investment: ₱127–165M over 5 years (1.4–1.9% of deployed capital).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>12 / 13</span></div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗
+     ║  SLIDE 13 — THE ASK                              ║
+     ╚══════════════════════════════════════════════════╝ -->
+<div class="slide coral">
+  <div class="logo">▸▸ SALMON</div>
+
+  <div class="eyebrow" style="color:rgba(255,255,255,0.6);">What We Need</div>
+  <h1 style="font-size:44px; color:#fff; margin-bottom:14px;">Two Decisions.<br>The First One Costs ₱25K.</h1>
+
+  <div class="row mt8" style="gap:16px; flex:1;">
+    <div style="flex:1; background:rgba(255,255,255,0.15); border-radius:14px; padding:20px;">
+      <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:8px;">Decision 1 — This Week</div>
+      <div style="font-size:20px; font-weight:900; color:#fff; margin-bottom:10px;">Approve ₱15–25K<br>for Phase 0 Validation</div>
+      <p style="font-size:13px; color:rgba(255,255,255,0.85); line-height:1.65; margin-bottom:12px;">4–6 weeks. Four binary tests. If all four pass: proceed to pilot. If any fails: we've saved ₱4.8M and learned what's broken.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+          <div style="font-size:18px; margin-bottom:3px;">📋</div><div style="font-size:11px; font-weight:700; color:#fff;">Demand</div><div style="font-size:10.5px; color:rgba(255,255,255,0.7);">50 surveys · &gt;60% say "would apply"</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+          <div style="font-size:18px; margin-bottom:3px;">🏫</div><div style="font-size:11px; font-weight:700; color:#fff;">Supply</div><div style="font-size:10.5px; color:rgba(255,255,255,0.7);">5 school admins · ≥3 sign MOU intent</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+          <div style="font-size:18px; margin-bottom:3px;">📊</div><div style="font-size:11px; font-weight:700; color:#fff;">Credit proxy</div><div style="font-size:10.5px; color:rgba(255,255,255,0.7);">Salmon data · education-segment DPD &lt;10%</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+          <div style="font-size:18px; margin-bottom:3px;">💰</div><div style="font-size:11px; font-weight:700; color:#fff;">Price</div><div style="font-size:10.5px; color:rgba(255,255,255,0.7);">Van Westendorp · 4.9%/mo acceptable to 70%+</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1; background:rgba(0,0,0,0.12); border-radius:14px; padding:20px;">
+      <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:8px;">Decision 2 — Post Validation (if Phase 0 passes)</div>
+      <div style="font-size:20px; font-weight:900; color:#fff; margin-bottom:10px;">Commit ₱4.8M<br>to 50-Loan Pilot</div>
+      <p style="font-size:13px; color:rgba(255,255,255,0.85); line-height:1.65; margin-bottom:12px;">₱4M loan capital + ₱850K opex. 6 months. Two kill gates — Month 3 and Month 6. Maximum downside if we exit at M3: <strong style="color:#fff;">₱850K opex</strong>. That's the price of certainty.</p>
+      <div class="tl" style="margin:0;">
+        <div class="tl-item"><div class="tl-dot" style="background:#fff; color:#FF6B6B; font-size:9px; font-weight:900;">W1–6</div><div class="tl-title" style="color:#fff; font-size:11px;">Phase 0</div><div class="tl-sub" style="color:rgba(255,255,255,0.6);">₱25K · 4 tests</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:rgba(255,255,255,0.2); color:#fff; font-size:9px;">M1–3</div><div class="tl-title" style="color:#fff; font-size:11px;">Setup + 10 loans</div><div class="tl-sub" style="color:rgba(255,255,255,0.6);">Legal, MOUs</div></div>
+        <div class="tl-item"><div class="tl-dot tl-gate" style="background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.5);">M3</div><div class="tl-title" style="color:#fff; font-size:11px; color:rgba(255,255,255,0.7);">Kill Gate #1</div><div class="tl-sub" style="color:rgba(255,255,255,0.5);">DPD30+ &lt;8%?</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:rgba(255,255,255,0.2); color:#fff; font-size:9px;">M3–6</div><div class="tl-title" style="color:#fff; font-size:11px;">Full 50 loans</div><div class="tl-sub" style="color:rgba(255,255,255,0.6);">₱4M capital</div></div>
+        <div class="tl-item"><div class="tl-dot tl-gate" style="background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.5);">M6</div><div class="tl-title" style="color:#fff; font-size:11px; color:rgba(255,255,255,0.7);">Kill Gate #2</div><div class="tl-sub" style="color:rgba(255,255,255,0.5);">CAC &lt;₱2K?</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:rgba(255,255,255,0.25); color:#FF6B6B; font-size:9px;">M7+</div><div class="tl-title" style="color:#fff; font-size:11px;">Scale</div><div class="tl-sub" style="color:rgba(255,255,255,0.6);">10 schools</div></div>
+      </div>
+    </div>
+
+    <div style="flex:0.6; background:rgba(0,0,0,0.15); border-radius:14px; padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:8px;">Not Needed Yet</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.8); line-height:1.7;">
+          <div style="margin-bottom:5px;">✗ Full tech build</div>
+          <div style="margin-bottom:5px;">✗ 50-person team</div>
+          <div style="margin-bottom:5px;">✗ School exclusivity</div>
+          <div style="margin-bottom:5px;">✗ Series A raise</div>
+          <div>✗ All three products</div>
+        </div>
+      </div>
+      <div style="margin-top:14px; padding:12px; background:rgba(255,255,255,0.1); border-radius:8px;">
+        <div style="font-size:11px; color:rgba(255,255,255,0.9); line-height:1.55;"><strong style="color:#fff;">We are buying information, not building a product.</strong> All of the above comes after Phase 0 + pilot confirm the thesis.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:14px; padding:12px 18px; background:rgba(0,0,0,0.12); border-radius:8px;">
+    <div style="font-size:11px; color:rgba(255,255,255,0.55);">
+      <strong style="color:rgba(255,255,255,0.8);">Full research available:</strong>
+      Deep Dive v4 (26 modules) · Stakeholder Summary v4 · 11 charts · Cross-validation audit · Risk register (83 risks) · 5-year financial model.
+      All in <code style="color:rgba(255,255,255,0.8);">/education-loans-ph/</code>
+    </div>
+  </div>
+
+  <div class="foot"><span>March 2026</span><span>13 / 13</span></div>
+</div>
+
+</body>
+</html>
